@@ -45,7 +45,7 @@ class Navigation extends Component {
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" color="inherit" className={classes.grow}>
-                News
+                FlyMenus
               </Typography>
               <Button component={Link} to={ROUTES.SIGN_IN} color="inherit">Login</Button>
               

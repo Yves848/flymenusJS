@@ -29,14 +29,21 @@ const INITIAL_STATE = {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    width: '35vw'
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    margin: theme.spacing.unit 
   },
   container: {
     display: "flex",
     flexWrap: "wrap"
   },
-  textField: {}
+  textField: {
+    width:'300px'
+  },
+  grid: {
+    
+  }
 });
 
 class SignInFormBase extends Component {
@@ -65,7 +72,10 @@ class SignInFormBase extends Component {
   };
 
   onSignInWithFacebook = () => {
-    this.props.firebase.doSignInWithFacebook();
+    this.props.firebase.doSignInWithFacebook()
+    .then(() =>{
+      this.props.history.push(ROUTES.HOME);
+    })
   };
 
   handleChange = name => event => {
@@ -80,8 +90,9 @@ class SignInFormBase extends Component {
     const isInvalid = password === "" || email === "";
 
     return (
-      <Paper className={classes.root}>
-        <Grid container direction="column" alignContent="center">
+      <div>
+      <Paper className={classes.root} elevation={3}>
+        <Grid container direction="column" alignContent="center" className={classes.grid}>
           <Grid item>
             <Button
               onClick={this.onSignInWithFacebook}
@@ -97,7 +108,7 @@ class SignInFormBase extends Component {
           <Grid container direction="column" alignContent="center">
             <Grid item xs>
               <TextField
-                id="outlined-name"
+                id="outlined-email"
                 label="email"
                 className={classes.textField}
                 value={email}
@@ -108,7 +119,7 @@ class SignInFormBase extends Component {
             </Grid>
             <Grid item xs>
               <TextField
-                id="outlined-name"
+                id="outlined-password"
                 label="Mot de passe"
                 className={classes.textField}
                 value={password}
@@ -134,6 +145,7 @@ class SignInFormBase extends Component {
           </Grid>
         </form>
       </Paper>
+      </div>
     );
   }
 }
