@@ -6,6 +6,7 @@ import { SignUpLink } from '../SignUp';
 import {PasswordForgetLink} from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import Button from '@material-ui/core/Button'
 
 const SignInPage = () => (
   <div>
@@ -49,12 +50,18 @@ class SignInFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  onSignInWithFacebook = () => {
+    this.props.firebase.doSignInWithFacebook();
+  }
+
   render() {
     const { email, password, error } = this.state;
 
     const isInvalid = password === '' || email === '';
 
     return (
+      <div>
+      <Button onClick={this.onSignInWithFacebook}>SignIn with FaceBook</Button>
       <form onSubmit={this.onSubmit}>
         <input
           name="email"
@@ -76,6 +83,7 @@ class SignInFormBase extends Component {
 
         {error && <p>{error.message}</p>}
       </form>
+      </div>
     );
   }
 }
