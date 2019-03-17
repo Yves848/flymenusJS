@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -40,7 +39,7 @@ class Firebase {
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
   doSignInWithFacebook = () => {
-    const facebookProvider = new firebase.auth.FacebookAuthProvider()
+    const facebookProvider = new app.auth.FacebookAuthProvider()
     return this.auth.signInWithPopup(facebookProvider);
   }
 
