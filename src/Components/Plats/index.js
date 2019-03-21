@@ -33,11 +33,11 @@ class Plats extends Component {
   }
 
   render() {
-    const { plats } = this.state.plats.map(plat => {
+    const plats  = this.state.plats.map(plat => {
       console.log(plat);
-      return <p>{plat.Nom}</p>;
+      return <p key={plat.uid}>{plat.Nom} {plat.uid}</p>;
     });
-    
+
     console.log(plats);
     return (
       <div>
