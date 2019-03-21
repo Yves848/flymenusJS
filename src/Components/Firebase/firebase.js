@@ -19,8 +19,13 @@ class Firebase {
     
   }
 
+  setUser = user => {
+    this.User = user;
+    console.log(this.User);
+  }
+
   doCreateUserWithEmailAndPassword = (email, password) => {
-    return this.auth.createUserWithEmailAndPassword(email,password);
+    return this.auth.createUserWithEmailAndPassword(email, password);
   };
 
   doSignInWithEmailAndPassword = (email, password) => {
@@ -38,14 +43,19 @@ class Firebase {
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
   doSignInWithFacebook = () => {
-    const facebookProvider = new app.auth.FacebookAuthProvider()
+    const facebookProvider = new app.auth.FacebookAuthProvider();
     return this.auth.signInWithPopup(facebookProvider);
-  }
+  };
 
   // *** USER'S API ***
 
   user = uid => this.db.ref(`users/${uid}`);
-  users = () => this.db.ref('users');
+  users = () => this.db.ref("users");
+  plats = uid => {
+    console.log(uid)
+    const url = `${uid}/Plats`;
+    return this.db.ref(url);
+  };
 }
 
 export default Firebase;

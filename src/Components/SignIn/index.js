@@ -73,7 +73,8 @@ class SignInFormBase extends Component {
 
   onSignInWithFacebook = () => {
     this.props.firebase.doSignInWithFacebook()
-    .then(() =>{
+    .then((user) =>{
+      this.props.firebase.setUser(user)
       this.props.history.push(ROUTES.HOME);
     })
   };

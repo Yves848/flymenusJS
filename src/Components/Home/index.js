@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { withAutorization } from '../Session';
+import Plats from "../Plats"
 
 class HomePage extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class HomePage extends Component {
           <h1>Home Page</h1>
           <p>The Home Page is accessible by every signed in User.</p>
         </div>
+        <Plats></Plats>
       </Router>
     );
   }
