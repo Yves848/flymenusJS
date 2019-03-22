@@ -15,9 +15,10 @@ class Plats extends Component {
     this.setState({
       loading: true
     });
-
+    const user = this.props.firebase.getUser();
+    console.log('plats - componentDidMount', user)
     this.props.firebase
-      .plats(this.props.firebase.User.user.uid)
+      .plats(user.user.uid)
       .on("value", snapshot => {
         const platsObj = snapshot.val();
         console.log(platsObj);

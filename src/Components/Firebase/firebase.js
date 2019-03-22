@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import "firebase/storage";
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -16,12 +17,17 @@ class Firebase {
     app.initializeApp(config);
     this.auth = app.auth();
     this.db = app.database();
-    
+    this.storage = app.storage();
   }
 
   setUser = user => {
     this.User = user;
-    console.log(this.User);
+    sessionStorage.setItem('authUser',JSON.stringify(user));
+    console.log('setUser',this.User);
+  }
+
+  getUser = () => {
+    return JSON.parse(sessionStorage.getItem('authUser'));
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
@@ -52,7 +58,7 @@ class Firebase {
   user = uid => this.db.ref(`users/${uid}`);
   users = () => this.db.ref("users");
   plats = uid => {
-    console.log(uid)
+    console.log('plats',uid)
     const url = `${uid}/Plats`;
     return this.db.ref(url);
   };
