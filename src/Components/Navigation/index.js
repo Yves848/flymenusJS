@@ -1,28 +1,35 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import SignOnButton from '../SignOut';
-import * as ROUTES from '../../constants/routes';
-import { AuthUserContext } from '../Session';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import SignOnButton from "../SignOut";
+import * as ROUTES from "../../constants/routes";
+import { AuthUserContext } from "../Session";
+import { withFirebase } from "../Firebase";
+import compose from "recompose/compose";
+import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Hidden from "@material-ui/core/Hidden";
+import Tooltip from "@material-ui/core/Tooltip";
+import * as Icons from "../../constants/images";
 
-const styles = {
+const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
+    marginRight: 20
   },
-};
+  appBar: {
+    zIndex: theme.zIndex.drawer+1
+  }
+
+});
 
 class Navigation extends Component {
   constructor(props) {
@@ -36,17 +43,31 @@ class Navigation extends Component {
         {authUser => (
           <div>
             <div className={classes.root}>
-              <AppBar position="static">
+              <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
-                  <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                    <MenuIcon />
-                  </IconButton>
-                  <Typography variant="h6" color="inherit" className={classes.grow}>
-                    FlyMenus
-                  </Typography>
-                  <Button component={Link} to={ROUTES.SIGN_IN} color="inherit">
-                    Login
-                  </Button>
+                <img src={Icons.SiteIcon}></img>
+                  <Hidden smDown>
+                    <Typography
+                      variant="h6"
+                      color="inherit"
+                      className={classes.grow}
+                    >
+                      FlyMenus
+                    </Typography>
+                  </Hidden>
+                  <Hidden smUp>
+                    <Typography
+                      variant="h6"
+                      color="inherit"
+                      className={classes.grow}
+                    >
+                      
+                    </Typography>
+                  </Hidden>
+                  
+                  {authUser
+                    ? NavigationAuth(this.props.firebase)
+                    : NavigationNonAuth()}
                 </Toolbar>
               </AppBar>
             </div>
@@ -57,37 +78,49 @@ class Navigation extends Component {
   }
 }
 
-const NavigationAuth = () => (
+const NavigationAuth = firebase => (
   <div>
-    <ul>
-      <li>
-        <Link to={ROUTES.LANDING}>Landing</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.HOME}>Home</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.ACCOUNT}>Account</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.ADMIN}>Admin</Link>
-      </li>
-      <li>
-        <SignOnButton />
-      </li>
-    </ul>
+    <Tooltip title="Home">
+      <Button component={Link} to={ROUTES.LANDING} size="small">
+        <img src={Icons.HomeIcon} />
+      </Button>
+    </Tooltip>
+
+    <Tooltip title="Plats">
+      <Button component={Link} to={ROUTES.PLATS} size="small">
+        <img src={Icons.PlatIcon} />
+      </Button>
+    </Tooltip>
+    <Tooltip title="Menus">
+      <Button component={Link} to={ROUTES.ACCOUNT} size="small">
+        <img src={Icons.MenuIcon} />
+      </Button>
+    </Tooltip>
+    <Tooltip title="Déconnection">
+      <Button onClick={firebase.doSignOut} size="small">
+        <img src={Icons.ConnectIcon} alt="" />
+      </Button>
+    </Tooltip>
   </div>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-    </li>
-  </ul>
+  <div>
+    <Tooltip title="Home">
+      <Button component={Link} to={ROUTES.LANDING} size="small">
+        <img src={Icons.HomeIcon} />
+      </Button>
+    </Tooltip>
+
+    <Tooltip title="Connection">
+      <Button component={Link} to={ROUTES.SIGN_IN} size="small">
+        <img src={Icons.ConnectIcon} alt="" />
+      </Button>
+    </Tooltip>
+  </div>
 );
 
-export default withStyles(styles)(Navigation);
+export default compose(
+  withFirebase,
+  withStyles(styles)
+)(Navigation);

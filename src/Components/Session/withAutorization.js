@@ -10,7 +10,7 @@ const withAuthorization = condition => Component => {
   class WithAuthorization extends React.Component {
     componentDidMount() {
       this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-        console.log('withAutorization',authUser)
+        //console.log('withAutorization',authUser)
         if (!condition(authUser)) {
           this.props.history.push(ROUTES.SIGN_IN);
         }

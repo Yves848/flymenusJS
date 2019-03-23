@@ -39,6 +39,7 @@ class Firebase {
   };
 
   doSignOut = () => {
+    sessionStorage.removeItem('authUser');
     this.auth.signOut();
   };
 
@@ -57,8 +58,8 @@ class Firebase {
 
   user = uid => this.db.ref(`users/${uid}`);
   users = () => this.db.ref("users");
-  plats = uid => {
-    console.log('plats',uid)
+  platsRef = uid => {
+    //console.log('plats',uid)
     const url = `${uid}/Plats`;
     return this.db.ref(url);
   };

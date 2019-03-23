@@ -15,7 +15,7 @@ const withAuthentication = Component => {
       this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
         if (sessionStorage.getItem('authUser')) {
           authUser = sessionStorage.getItem('authUser');
-          console.log('authUser',authUser)
+          //console.log('authUser',authUser)
         };
 
         authUser

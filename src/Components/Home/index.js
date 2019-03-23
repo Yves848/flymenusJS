@@ -15,7 +15,6 @@ class HomePage extends Component {
           <h1>Home Page</h1>
           <p>The Home Page is accessible by every signed in User.</p>
         </div>
-        <Plats></Plats>
       </Router>
     );
   }

@@ -60,7 +60,7 @@ class SignInFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.PLATS);
       })
       .catch(error => {
         this.setState({ error });
@@ -75,7 +75,7 @@ class SignInFormBase extends Component {
     this.props.firebase.doSignInWithFacebook()
     .then((user) =>{
       this.props.firebase.setUser(user)
-      this.props.history.push(ROUTES.HOME);
+      this.props.history.push(ROUTES.PLATS);
     })
   };
 

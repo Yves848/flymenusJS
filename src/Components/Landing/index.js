@@ -6,7 +6,7 @@ import back from '../../Assest/Images/Icon256.png';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    margin: theme.spacing.unit *2,
+    marginTop: theme.spacing.unit * 9,
   }
 
 })
@@ -15,7 +15,7 @@ class Landing extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid className={classes.root} container direction="column" alignContent="center">
+      <Grid className={classes.root} container direction="column" alignContent="center" justify="center">
         <Grid item>
           <img src={back}></img>
         </Grid>
