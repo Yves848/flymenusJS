@@ -5,6 +5,7 @@ import ConnectIcon from "../Assest/Images/keyring-icon.png";
 
 import AddIcon from "../Assest/Images/sign-add-icon.png";
 import DeleteIcon from "../Assest/Images/sign-delete-icon.png";
+import EditIcon from "../Assest/Images/notepad-icon.png"
 
 import SiteIcon from "../Assest/Images/Icon32.png";
 
@@ -15,5 +16,6 @@ export {
   ConnectIcon,
   AddIcon,
   DeleteIcon,
-  SiteIcon
+  SiteIcon,
+  EditIcon
 };

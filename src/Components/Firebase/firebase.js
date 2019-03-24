@@ -18,6 +18,25 @@ class Firebase {
     this.auth = app.auth();
     this.db = app.database();
     this.storage = app.storage();
+    this.language = navigator.language;
+    this.rtl = (this.language === "ar");
+    this.direction = (this.language ==="ar" ? "rtl" : "ltr")
+  }
+
+  switchRtl = () => {
+    this.rtl = !this.rtl;
+    this.direction = (this.rtl ? "rtl" : "ltr");
+    this.language = (this.rtl ? "ar" : "fr");
+    this.doDirectionChange();
+  }
+
+  getLangage = () => {
+    return this.language;
+  }
+
+  doDirectionChange = () => {
+    
+    console.log('change' + navigator.language);
   }
 
   setUser = user => {

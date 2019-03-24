@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 import { withAutorization } from '../Session';
-import Plats from "../Plats"
+
 
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

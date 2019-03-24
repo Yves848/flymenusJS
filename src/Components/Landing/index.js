@@ -17,7 +17,7 @@ class Landing extends Component {
     return (
       <Grid className={classes.root} container direction="column" alignContent="center" justify="center">
         <Grid item>
-          <img src={back}></img>
+          <img src={back} alt=""></img>
         </Grid>
       </Grid>
     )
