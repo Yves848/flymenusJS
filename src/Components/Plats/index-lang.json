@@ -1,8 +1,10 @@
 {
   "fr": {
-    "titre": "Plats"
+    "titre": "Plats",
+    "ajout":"Ajout"
   },
   "ar": {
-    "titre": "طبق"
+    "titre": "طبق",
+    "ajout": "أضف"
   }
 }

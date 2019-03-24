@@ -219,7 +219,7 @@ class Plats extends Component {
                 alt=""
               >
                 <img src={Icons.AddIcon} alt="" />
-                <Hidden xsDown>Ajout</Hidden>
+                <Hidden xsDown>{Langues.default[langue]["ajout"]}</Hidden>
               </ListItem>
             </List>
           </Grid>
