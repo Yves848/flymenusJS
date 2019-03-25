@@ -15,6 +15,7 @@ import * as Icons from "../../constants/images";
 import * as Langues from './index-lang.json'
 
 const INITIAL_PLAT = require("./plat.json");
+
 const drawerWidth = 200;
 const styles = theme => ({
   root: {
