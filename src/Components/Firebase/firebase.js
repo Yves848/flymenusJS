@@ -12,6 +12,25 @@ const config = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID
 };
 
+const categ = [
+  { nom: 'Entrée / Hors d\'oeuvre'},
+  { nom: 'Soupe'},
+  { nom: 'Salades'},
+  { nom: 'Plats principaux'},
+  { nom: 'Accompagnements'},
+  { nom: 'Desserts'},
+  { nom: 'Collations'},
+  { nom: 'Petits déjeuner'},
+  { nom: 'Sandwiches'},
+  { nom: 'Sauces et tempettes'},
+  { nom: 'Vinaigrettes'},
+  { nom: 'Boissons'},
+];
+
+export const categories = categ.map((cat,i) => {
+  return {nom: cat.nom,index: i}
+})
+
 class Firebase {
   constructor() {
     app.initializeApp(config);
@@ -73,6 +92,17 @@ class Firebase {
     return this.auth.signInWithPopup(facebookProvider);
   };
 
+  
+
+  doImportCategs = () => {
+    console.log('this.db',this.db);
+
+    categories.forEach((categorie) => {
+      const newCateg = this.categoriesRef().push();
+      newCateg.set({nom: categorie.nom, index: categorie.index});
+    })
+  }
+
   // *** USER'S API ***
 
   user = uid => this.db.ref(`users/${uid}`);
@@ -82,6 +112,7 @@ class Firebase {
     const url = `${uid}/Plats`;
     return this.db.ref(url);
   };
+  categoriesRef = () => this.db.ref('categories');
 }
 
 export default Firebase;

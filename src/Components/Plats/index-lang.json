@@ -1,10 +1,12 @@
 {
   "fr": {
     "titre": "Plats",
-    "ajout":"Ajout"
+    "ajout":"Ajout",
+    "categs": "categ"
   },
   "ar": {
     "titre": "طبق",
-    "ajout": "أضف"
+    "ajout": "أضف",
+    "categs": "categ"
   }
 }
