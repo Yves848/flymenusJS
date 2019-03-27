@@ -9,7 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import OutlinedInput from "@material-ui/core/OutlinedInput"
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 
 const INITIAL_PLAT = require('./plat.json');
@@ -40,12 +41,19 @@ class AjoutPlat extends Component {
     };
   }
 
+  handleCategChange = event => {
+    console.log(event.target);
+    const { plat } = this.state;
+    plat.Categorie = event.target.value;
+    this.setState({ plat });
+  };
+
   render() {
     const { classes, categs } = this.props;
     const { plat } = this.state;
 
     const itemList = categs.map((categ, index) => {
-      return <MenuItem value={categ.index}>{categ.nom}</MenuItem>;
+      return <MenuItem value={categ.nom}>{categ.nom}</MenuItem>;
     });
     return (
       <Dialog open={this.props.isOpen} onClose={this.props.handleClose} TransitionComponent={Transistion} fullScreen>
@@ -55,25 +63,23 @@ class AjoutPlat extends Component {
             <TextField className={classes.textField} id="platNom" value={plat.Nom} label="Nom" variant="outlined" />
           </Grid>
           <Grid item>
-          <FormControl variant="outlined">
-            <Select
-              className={classes.textField}
-              value={plat.Categorie}
-              onChange={this.handleCategChange}
-              input={
-                <OutlinedInput
-                labelWidth={0}
-                name="Categorie"
-                id="outlined-age-simple"
-              />
-              }
-              inputProps={{
-                name: 'Categorie',
-                id: 'platCateg',
-              }}
-            >
-              {itemList}
-            </Select>
+            <FormControl variant="outlined">
+              <InputLabel
+                ref={ref => {
+                  this.InputLabelRef = ref;
+                }}
+                htmlFor="placeCateg"
+              >
+                Catégorie
+              </InputLabel>
+              <Select
+                className={classes.textField}
+                value={plat.Categorie}
+                onChange={this.handleCategChange}
+                input={<OutlinedInput labelWidth={67} name="Categorie" id="placeCateg" />}
+              >
+                {itemList}
+              </Select>
             </FormControl>
           </Grid>
           <Grid item>
