@@ -200,7 +200,7 @@ class Plats extends Component {
       </div>
     ) : (
       <div className={classes.content} dir={firebase.direction}>
-        <AjoutPlat isOpen={this.state.open} handleClose={() => this.handleClose()} categs={this.state.categs}/>
+        <AjoutPlat isOpen={this.state.open} handleClose={() => this.handleClose()} categs={this.state.categs} langue={langue} dir={firebase.direction}/>
         <Grid container alignContent="flex-start" justify="flex-start" alignItems="flex-start">
           <Grid item xs={2} lg={1}>
             <List dense>

@@ -1,0 +1,16 @@
+{
+  "fr": {
+    "titre": "Ajout Plat",
+    "labelNom":"Nom",
+    "labelCategorie": "Catégorie",
+    "btnAnnuler":"Annuler",
+    "btnEnregistrer":"Enregistrer"
+  },
+  "ar": {
+    "titre": "إضافة مسطحة",
+    "labelNom":"اسم",
+    "labelCategorie": "فئة",
+    "btnAnnuler":"يبطل",
+    "btnEnregistrer":"سجل"
+  }
+}

@@ -12,6 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import Langues from './ajoutPlats-lang.json';
 
 const INITIAL_PLAT = require('./plat.json');
 
@@ -49,7 +50,7 @@ class AjoutPlat extends Component {
   };
 
   render() {
-    const { classes, categs } = this.props;
+    const { classes, categs, langue, dir } = this.props;
     const { plat } = this.state;
 
     const itemList = categs.map((categ, index) => {
@@ -57,22 +58,25 @@ class AjoutPlat extends Component {
     });
     return (
       <Dialog open={this.props.isOpen} onClose={this.props.handleClose} TransitionComponent={Transistion} fullScreen>
-        <h1>Ajout Plat</h1>
+      <div dir={dir}>
+        <h1>{Langues[langue]['titre']}</h1>
         <Grid container direction="column" alignItems="stretch" justify="space-around" spacing={24} className={classes.grid}>
           <Grid item>
-            <TextField className={classes.textField} id="platNom" value={plat.Nom} label="Nom" variant="outlined" />
+            <TextField dir={dir} className={classes.textField} id="platNom" value={plat.Nom} label="Nom" variant="outlined" />
           </Grid>
           <Grid item>
             <FormControl variant="outlined">
               <InputLabel
+              dir={dir}
                 ref={ref => {
                   this.InputLabelRef = ref;
                 }}
                 htmlFor="placeCateg"
               >
-                Catégorie
+                {Langues[langue]['labelCategorie']}
               </InputLabel>
               <Select
+              dir={dir}
                 className={classes.textField}
                 value={plat.Categorie}
                 onChange={this.handleCategChange}
@@ -90,16 +94,17 @@ class AjoutPlat extends Component {
           <Grid item />
           <Grid item xs={4} sm={4}>
             <Button variant="outlined" color="secondary" onClick={this.props.handleClose} className={classes.button}>
-              Annuler
+            {Langues[langue]['btnAnnuler']}
             </Button>
           </Grid>
           <Grid item xs={4} sm={4}>
             <Button variant="outlined" color="secondary" onClick={this.props.handleClose} className={classes.button}>
-              Enregister
+            {Langues[langue]['btnEnregistrer']}
             </Button>
           </Grid>
           <Grid item />
         </Grid>
+        </div>
       </Dialog>
     );
   }
