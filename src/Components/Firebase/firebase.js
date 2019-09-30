@@ -60,12 +60,13 @@ class Firebase {
 
   setUser = user => {
     this.User = user;
-    sessionStorage.setItem('authUser',JSON.stringify(user));
+    localStorage.setItem('authUser',JSON.stringify(user));
     console.log('setUser',this.User);
   }
 
   getUser = () => {
-    return JSON.parse(sessionStorage.getItem('authUser'));
+    console.log("firebase.getUser", localStorage.getItem('authUser'));
+    return JSON.parse(localStorage.getItem('authUser'));
   }
 
   doCreateUserWithEmailAndPassword = (email, password) => {
